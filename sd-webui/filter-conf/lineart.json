@@ -1,0 +1,23 @@
+{
+	"name":"lineart",
+    "type": "txt2img",
+    "input_image": "E:/ai/2.jpg",
+    "checkpoint": "juggernautXL_version5.safetensors",
+    "vae": "None",
+    "prompt": "line art drawing {role} , professional, sleek, modern, minimalist, graphic, line art, vector graphics, {prompt}",
+    "negative_prompt": "anime, photorealistic, 35mm film, deformed, glitch, blurry, noisy, off-center, deformed, cross-eyed, closed eyes, bad anatomy, ugly, disfigured, mutated, realism, realistic, impressionism, expressionism, oil, acrylic",
+    "sampler_name": "DPM++ 2M",
+    "scheduler": "Karras",
+    "steps": 20,
+    "cfg_scale": 7,
+    "upscale": "R-ESRGAN 4x+ Anime6B",
+    "controlnet": [
+        {
+            "module": "softedge_pidinet",
+            "model": "bdsqlsz_controlllite_xl_softedge",
+            "weight": 0.8,
+            "pixel_perfect": true
+        }
+    ],
+    "description":"艺术线条"
+}

@@ -1,0 +1,30 @@
+{
+	"name":"woolen",
+    "type": "img2img",
+    "input_image": "E:/ai/test-images/0f83fbf6a9586e6bd2225612157fc26c.jpg",
+    "checkpoint": "juggernautXL_version5.safetensors",
+    "vae": "None",
+    "prompt": "w00len, a hyper realistic macro close up picture of (( {role} made out of wool and yarn)) wool fluffy yarn backdrop,{prompt} <lora:w00len:0.5>",
+    "negative_prompt": "worst quality,nsfw",
+    "sampler_name": "DPM++ 2M",
+    "scheduler": "Karras",
+    "steps": 70	,
+    "denoising_strength": 0.6,
+    "cfg_scale": 7,
+    "upscale": "R-ESRGAN 4x+",
+    "controlnet": [
+        {
+            "module": "instant_id_face_embedding",
+            "model": "ip-adapter_instant_id_sdx",
+            "weight": 0.5,
+            "pixel_perfect": true
+        },
+        {
+            "module": "instant_id_face_keypoints",
+            "model": "control_instant_id_sdxl",
+            "weight": 0.5,
+            "pixel_perfect": true
+        }
+    ],
+    "description":"毛线"
+}

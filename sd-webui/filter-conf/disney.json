@@ -1,0 +1,24 @@
+{
+	"name":"disney",
+    "type": "txt2img",
+    "input_image": "E:/ai/2.jpg",
+    "checkpoint": "disneyPixarCartoon_v10.safetensors",
+    "vae": "kl-f8-anime2.ckpt",
+    "prompt": "masterpiece, best quality, {role} ascot blue_sky cloud day field flower flower_field ,outdoors, sky, solo,sunflower, {prompt}",
+    "negative_prompt": "EasyNegative, drawn by bad-artist, sketch by bad-artist-anime, (bad_prompt:0.8), (artist name, signature, watermark:1.4), (ugly:1.2), (worst quality, poor details:1.4), bad-hands-5, badhandv4, blurry",
+    "sampler_name": "Euler a",
+    "scheduler": "Automatic",
+    "steps": 20	,
+    "cfg_scale": 7,
+    "upscale": "R-ESRGAN 4x+",
+    "controlnet": [
+        {
+            "module": "tile_resample",
+            "model": "control_v11f1e_sd15_tile",
+            "weight": 0.5,
+            "down_sampling_rate":5,
+            "pixel_perfect": true
+        }
+    ],
+    "description":"迪士尼"
+}

@@ -1,0 +1,2 @@
+webuiapi==0.9.15
+setproctitle==1.3.3

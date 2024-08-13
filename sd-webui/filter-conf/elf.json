@@ -1,0 +1,24 @@
+{
+	"name":"elf",
+    "type": "img2img",
+    "input_image": "E:/ai/2.jpg",
+    "checkpoint": "dreamshaper_8.safetensors",
+    "vae": "kl-f8-anime2.ckpt",
+    "prompt": " fantasy,1girl,detailed face,full body,elf dress,,forest,sitting , <lora:elf_dress:0.7>",
+    "negative_prompt": "(worst quality:2),(low quality:2),(normal quality:2),lowres,watermark,monochrome,double navel,muscle,mole,slanted eyes, DeepNegative, badhandsv4",
+    "sampler_name": "DPM++ 2M",
+    "scheduler": "Karras",
+    "steps": 30,
+    "cfg_scale": 7,
+    "upscale": "R-ESRGAN 4x+ Anime6B",
+    "controlnet": [
+        {
+            "module": "tile_resample",
+            "model": "control_v11f1e_sd15_tile",
+            "weight": 0.8,
+            "down_sampling_rate":4,
+            "pixel_perfect": true
+        }
+    ],
+    "description":"精灵"
+}

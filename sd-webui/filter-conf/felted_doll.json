@@ -1,0 +1,30 @@
+{
+	"name":"felted_doll",
+    "type": "img2img",
+    "input_image": "E:/ai/2.jpg",
+    "checkpoint": "juggernautXL_version5.safetensors",
+    "vae": "None",
+    "prompt": "felted doll, {role}, {prompt} <lora:20230930-1696066978110:0.5>",
+    "negative_prompt": "worst quality,nsfw",
+    "sampler_name": "DPM++ 2M",
+    "scheduler": "Karras",
+    "steps": 20,
+    "denoising_strength": 0.6,
+    "cfg_scale": 7,
+    "upscale": "R-ESRGAN 4x+",
+    "controlnet": [
+        {
+            "module": "instant_id_face_embedding",
+            "model": "ip-adapter_instant_id_sdx",
+            "weight": 0.5,
+            "pixel_perfect": true
+        },
+        {
+            "module": "instant_id_face_keypoints",
+            "model": "control_instant_id_sdxl",
+            "weight": 0.5,
+            "pixel_perfect": true
+        }
+    ],
+    "description":"毛毡"
+}
