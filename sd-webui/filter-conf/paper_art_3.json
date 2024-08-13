@@ -4,7 +4,7 @@
     "input_image": "E:/ai/2.jpg",
     "checkpoint": "juggernautXL_version5.safetensors",
     "vae": "None",
-    "prompt": "PaperCutout style, {role}, {prompt}, Very detailed, clean, high quality, sharp image <lora:sdxl-PaperCutouts-Dreambooh:0.8>",
+    "prompt": "PaperCutout style, {role}, Very detailed, clean, high quality, sharp image <lora:sdxl-PaperCutouts-Dreambooh:0.8>",
     "negative_prompt": "blurry, unfocused, smudged, blurry, dirty, malformed, text, watermark, unfocused",
     "sampler_name": "DPM++ 2M",
     "scheduler": "Karras",

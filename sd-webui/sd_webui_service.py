@@ -139,13 +139,17 @@ class SDWebUIService:
       control_mode = 0
       if 'control_mode' in param:
         control_mode = param['control_mode']
+      low_vram = False
+      if 'low_vram' in param:
+        low_vram = True
       control_net = webuiapi.ControlNetUnit(image=self.input_image_, 
                                             module=param['module'], 
                                             model=param['model'], 
                                             weight=param['weight'],
                                             threshold_a = threshold_a,
                                             pixel_perfect=param['pixel_perfect'],
-                                            control_mode = control_mode)
+                                            control_mode = control_mode,
+                                            low_vram = low_vram)
       results.append(control_net)
     return results
 
@@ -222,6 +226,7 @@ class SDWebUIService:
       return self.img2img()
     else:
       return self.txt2img()
+
 
 #sdwebui_service = SDWebUIService(clay_style_str, 'sunyingshi-sd-webui-test.2345test.cn')
 #sdwebui_service.generate_image().image.save('result.png')

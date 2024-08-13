@@ -4,7 +4,7 @@
     "input_image": "E:/ai/2.jpg",
     "checkpoint": "juggernautXL_version5.safetensors",
     "vae": "None",
-    "prompt": "popmart, blindbox, {role}, {prompt}, <lora:blindbox_popmart_xl:0.5>",
+    "prompt": "popmart, blindbox, {role}, <lora:blindbox_popmart_xl:0.5>",
     "negative_prompt": "ugly",
     "sampler_name": "DPM++ SDE",
     "scheduler": "Karras",

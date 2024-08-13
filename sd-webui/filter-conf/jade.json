@@ -4,7 +4,7 @@
     "input_image": "E:/ai/2.jpg",
     "checkpoint": "juggernautXL_version5.safetensors",
     "vae": "None",
-    "prompt": "coloured glaze,(glass:1.2),jade, glazed {role}, translucent, {prompt}<lora:liuli0905xl2:0.5>",
+    "prompt": "coloured glaze,(glass:1.2),jade, {role} formed of colored glaze, translucent,<lora:liuli0905xl2:0.9>",
     "negative_prompt": "(worst quality, low quality, cgi, bad eye, worst eye, illustration, cartoon),deformed,distorted,disfigured,poorly drawn,bad anatomy,wrong anatomy",
     "sampler_name": "DPM++ 2M SDE",
     "scheduler": "Karras",

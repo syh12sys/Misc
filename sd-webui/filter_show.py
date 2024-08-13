@@ -38,7 +38,7 @@ title = r"""
 <h1 align="center">v1.1-filter-demo</h1>
 """
 
-description = r"""如过滤镜有问题，请及时联系【孙迎世】"""
+description = r"""如果滤镜有问题，请及时联系【孙迎世】"""
 
 
 tips = r"""

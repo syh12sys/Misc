@@ -4,7 +4,7 @@
     "input_image": "E:/ai/2.jpg",
     "checkpoint": "sdxlHK_v06.safetensors",
     "vae": "None",
-    "prompt": "anime, {role}, {prompt} cyberpunk, cyberpunk art, retrofuturism <lora:sdxl:0.8>",
+    "prompt": "anime, {role}, {prompt}, cyberpunk, cyberpunk art, retrofuturism <lora:sdxl:0.8>",
     "negative_prompt": "(worst quality, low quality, cgi, bad eye, worst eye),deformed,distorted,disfigured,poorly drawn,bad anatomy,wrong anatomy",
     "sampler_name": "DPM++ 2M",
     "scheduler": "Karras",
@@ -32,5 +32,5 @@
             "pixel_perfect": true
         }
     ],
-    "description":"赛博朋克"
+    "description":"复古-赛博朋克"
 }
