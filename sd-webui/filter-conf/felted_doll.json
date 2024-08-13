@@ -1,7 +1,7 @@
 {
 	"name":"felted_doll",
     "type": "img2img",
-    "input_image": "E:/ai/2.jpg",
+    "input_image": "E:/ai/test-images/dog.jpg",
     "checkpoint": "juggernautXL_version5.safetensors",
     "vae": "None",
     "prompt": "felted doll, {role}, <lora:20230930-1696066978110:0.5>",

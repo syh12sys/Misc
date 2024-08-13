@@ -79,8 +79,12 @@ class SDWebUIService:
     else:
       # 智能选择缩放尺寸
       candidate_crop_scales = {}
-      for i in range(1024, 511, -64):
-        candidate_crop_scales[i / 1024] = (i, 1024)
+      if image.width > image.height:
+        for i in range(1024, 511, -64):
+          candidate_crop_scales[1024 / i] = (1024, i)
+      else:
+        for i in range(1024, 511, -64):
+          candidate_crop_scales[i / 1024] = (i, 1024)
       # 获取最相近的缩放比例
       origin_scale = image.width / image.height
       min_difference = float('inf')
@@ -118,18 +122,32 @@ class SDWebUIService:
 
 
   def build_control_net(self, control_nets: list):
-    # lineart作为兜底contornet
+    # lineart + depth 作为兜底
     if self.control_net_key_ == 'other':
+      # lineart
       if self.is_sdxl():
         model = 'bdsqlsz_controlllite_xl_lineart_anime_denoise'
       else:
-        model = 'control_v11p_sd15s2_lineart_anime.pth'
-      control_net = webuiapi.ControlNetUnit(image=self.input_image_, 
+        model = 'control_v11p_sd15s2_lineart_anime'
+      lineart_controlnet = webuiapi.ControlNetUnit(image=self.input_image_, 
                                             module='lineart_standard (from white bg & black line)', 
                                             model=model, 
-                                            weight=0.3, 
+                                            weight=0.5, 
                                             pixel_perfect=True)
-      return [control_net]
+
+      # depth
+      if self.is_sdxl():
+        model = 'bdsqlsz_controlllite_xl_depth_V2'
+      else:
+        model = 'control_v11f1p_sd15_depth'
+      depth_controlnet = webuiapi.ControlNetUnit(image=self.input_image_, 
+                                            module='depth_anything_v2', 
+                                            model=model, 
+                                            weight=0.5, 
+                                            pixel_perfect=True)
+
+      return [lineart_controlnet, depth_controlnet]
+
 
     results = []
     for param in control_nets:
@@ -202,6 +220,9 @@ class SDWebUIService:
         role = self.tagger_interrogate_.get_animal()
       if len(role) > 0:
          role_str = role[0]
+      elif self.tagger_interrogate_.is_animal:
+        role_str = 'animal'
+        
       prompt = self.filter_conf_['prompt']
       self.filter_conf_['prompt'] = prompt.replace(prompt_replacement_keys[0], role_str)
 

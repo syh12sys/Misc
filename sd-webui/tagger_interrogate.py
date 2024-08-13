@@ -23,7 +23,7 @@ class TaggerInterrogate:
     self.caption_ = {key: value for key, value in result.info.items() if key not in exclude}
 
   def get_gender(self, filter_name:str = "")->list:
-    result = set()
+    result = list()
     for key, value in self.caption_.items():
       if value < self.low_confidence_:
         continue
@@ -32,24 +32,30 @@ class TaggerInterrogate:
           # 特殊处理 murano_glass滤镜 female和male效果最好
           if filter_name == "murano_glass":
             if i < 4:
-              result.add("female")
+              result.append("female")
             else:
-              result.add("male")
+              result.append("male")
           else:
-            result.add(key)
+            result.append(key)
       
-    return list(result)
-  
+    return result
+
+  # 获取动物种类
   def get_animal(self)->list:
-    result = set()
+    result = list()
     for key, value in self.caption_.items():
       if value < self.low_confidence_:
         continue
       for i in range(len(self.animals)):
-        if self.animals[i] in key:
-            result.add(key)
+        if self.animals[i] == key:
+            result.append(key)
       
-    return list(result)
+    return result
+
+  # get_animal有可能不能获取到动物的类别，但通过no_humans和animal_focus可以判断出是动物
+  # 能判断出动物，对出图也是非常有帮助的
+  def is_animal(self)->bool:
+    return self.has_tag('no_humans') and self.has_tag('animal_focus')
   
   def get_high_confidence_tags(self)->list:
     result = []

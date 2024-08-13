@@ -4,9 +4,9 @@ import json
 import os
 
 
-#file_path = os.path.join(util.get_py_file_dir(), 'filter-conf/cyberpunk.json')
-#with open(file_path, 'r', encoding='utf-8') as file:
-#    data = file.read()
+file_path = os.path.join(util.get_py_file_dir(), 'filter-conf/woolen.json')
+with open(file_path, 'r', encoding='utf-8') as file:
+    data = file.read()
 
 def get_style_content(style_path: str)->str:
   with open(style_path, 'r', encoding='utf-8') as file:
@@ -29,6 +29,6 @@ def get_styles()->dict:
            result[key] = file_path
   return result
 
-#print(get_styles())
-#sd_webui_service = SDWebUIService(str(data), 'sunyingshi-sd-webui-test.2345test.cn')
-#sd_webui_service.generate_image().image.save('result.png')
+if __name__ == '__main__':
+  sd_webui_service = SDWebUIService(str(data), 'sunyingshi-sd-webui-test.2345test.cn')
+  sd_webui_service.generate_image().image.save('result.png')

@@ -1,10 +1,10 @@
 {
 	"name":"woolen",
     "type": "img2img",
-    "input_image": "E:/ai/test-images/0f83fbf6a9586e6bd2225612157fc26c.jpg",
+    "input_image": "E:/ai/test-images/17235287866585.png",
     "checkpoint": "juggernautXL_version5.safetensors",
     "vae": "None",
-    "prompt": "w00len, a hyper realistic macro close up picture of (( {role} made out of wool and yarn)) wool fluffy yarn backdrop,{prompt} <lora:w00len:0.5>",
+    "prompt": "w00len, a hyper realistic macro close up picture of (( {role} made out of wool and yarn)) wool fluffy yarn backdrop,{prompt}<lora:w00len:0.5>",
     "negative_prompt": "worst quality,nsfw",
     "sampler_name": "DPM++ 2M",
     "scheduler": "Karras",
