@@ -5,7 +5,7 @@
     "checkpoint": "juggernautXL_version5.safetensors",
     "vae": "None",
     "prompt": "popmart, blindbox, {role}, <lora:blindbox_popmart_xl:0.5>",
-    "negative_prompt": "bad art, ugly, watermark,  (text:1.4), (letters:1.4), letterbox, (writing:1.4), (symbols:1.4)",
+    "negative_prompt": "(popmart:1.4), bad art, ugly, (watermark:1.5), (popmart_watermark:1.4), (text:1.4), (letters:1.4), letterbox, (writing:1.4), (symbols:1.4)",
     "sampler_name": "DPM++ SDE",
     "scheduler": "Karras",
     "steps": 20,
