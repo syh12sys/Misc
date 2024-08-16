@@ -66,7 +66,7 @@ class SDWebUIService:
     self.input_image_ = image
     # 图片剪切成适合大模型的尺寸
     self.input_image_ = self.crop_image_for_base_model(image)
-    self.input_image_.save("crop.jpg")
+    #self.input_image_.save("crop.jpg")
 
   def is_sdxl(self):
     return "XL" in self.filter_conf_['checkpoint']
