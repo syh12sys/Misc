@@ -9,7 +9,7 @@ class TaggerInterrogate:
     self.api_ = webuiapi.WebUIApi(baseurl=baseurl)
     self.caption_ = None
     self.high_confidence_ = 0.85
-    self.low_confidence_ = 0.6
+    self.low_confidence_ = 0.5
     #self.gender_candidate_ = ['girls', 'girl', 'woman', 'women', 'boys', 'boy',  'man', 'men']
     self.gender_candidate_ = ['girls', 'girl', 'boys', 'boy']
 
@@ -56,6 +56,9 @@ class TaggerInterrogate:
   # 能判断出动物，对出图也是非常有帮助的
   def is_animal(self)->bool:
     return self.has_tag('no_humans') and self.has_tag('animal_focus')
+
+  def is_black_person(self):
+    return self.has_tag('dark_skin') or self.has_tag('dark-skinned_male')
   
   def get_high_confidence_tags(self)->list:
     result = []
@@ -72,17 +75,6 @@ class TaggerInterrogate:
           if self.animals[i] in key:
             break
         else:
-          result.append(key)
-    return result
-
-
-  def get_tags(self, input_tags:list)->list:
-    result = []
-    for key, value in self.caption_.items():
-      if value < self.low_confidence_:
-        continue
-      for input_tag in input_tags:
-        if input_tag in key:
           result.append(key)
     return result
 

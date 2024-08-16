@@ -18,6 +18,12 @@
             "weight": 0.5,
             "down_sampling_rate":5,
             "pixel_perfect": true
+        },
+        {
+            "module": "dw_openpose_full",
+            "model": "control_v11p_sd15_openpose",
+            "weight": 0.5,
+            "pixel_perfect": true
         }
     ],
     "description":"迪士尼"

@@ -40,6 +40,11 @@ title = r"""
 
 description = r"""如果滤镜有问题，请及时联系【孙迎世】"""
 
+article = r"""
+📧 **Contact**
+如果您有任何问题，请在企业微信上联系作者【孙迎世】，或者将问题以邮件的形式发送到邮箱  <b>sunyingshipc@2345.com</b>
+"""
+
 
 tips = r"""
 ### Usage tips of InstantID
@@ -73,6 +78,8 @@ with gr.Blocks(css=css) as demo:
                 value=DEFAULT_STYLE_NAME,
             )
 
+            gr.Markdown(article)
+
         with gr.Column(scale=1):
             gallery = gr.Image(label="Generated Images")
 
@@ -84,6 +91,7 @@ with gr.Blocks(css=css) as demo:
             ],
             outputs=[gallery],
         )
+
 
 
 demo.queue(api_open=False)

@@ -5,7 +5,7 @@
     "checkpoint": "juggernautXL_version5.safetensors",
     "vae": "None",
     "prompt": "Makoto Shinkai Style , Makoto Sinkay anime style, {role}, {prompt}, Beautiful nature, <lora:Makoto Shinkai Style:0.8>",
-    "negative_prompt": "nsfw",
+    "negative_prompt": "nsfw,(worst quality, low quality, cgi, bad eye, worst eye),deformed,distorted,disfigured,poorly drawn,bad anatomy,wrong anatomy, poorly drawn hands, bad hands,mutated hands",
     "sampler_name": "DPM++ 3M SDE",
     "scheduler": "Karras",
     "steps": 30,
