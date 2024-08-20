@@ -4,7 +4,7 @@
     "input_image": "E:/ai/test-images/74e2a28a-2aee-4dc3-95e9-8d133b893499.png",
     "checkpoint": "juggernautXL_version5.safetensors",
     "vae": "Automatic",
-    "prompt": "babycream, Surreal photography, whimsical ice cream world photos, many lovely buildings of ice creamss, there are many ice cream buildings<lora:EMS-382534-EMS:0.800000>",
+    "prompt": "best quality, masterpiece, babycream,  Surreal photography, whimsical ice_cream world photos, lovely buildings of ice_cream,<lora:EMS-382534-EMS:0.600000>",
     "negative_prompt": "(worst quality:1.6),(low quality:1.6),(normal quality:1.6),lowres,watermark,nsfw,tooth,ng_deepnegative_v1_75t,(bedhands:2)",
     "sampler_name": "DPM++ 2M SDE",
     "scheduler": "Karras",

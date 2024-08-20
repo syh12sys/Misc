@@ -10,7 +10,6 @@ class TaggerInterrogate:
     self.caption_ = None
     self.high_confidence_ = 0.85
     self.low_confidence_ = 0.5
-    #self.gender_candidate_ = ['girls', 'girl', 'woman', 'women', 'boys', 'boy',  'man', 'men']
     self.gender_candidate_ = ['girls', 'girl', 'boys', 'boy']
 
     file_path = os.path.join(util.get_py_file_dir(), 'filter-conf/animals.txt')
@@ -22,23 +21,32 @@ class TaggerInterrogate:
     exclude = ['general', 'sensitive', 'questionable', 'explicit']
     self.caption_ = {key: value for key, value in result.info.items() if key not in exclude}
 
-  def get_gender(self, filter_name:str = "")->list:
+  def get_gender(self, filter_name:str = ""):
+    gender_candidate = [False, False, False, False]
     result = list()
     for key, value in self.caption_.items():
       if value < self.low_confidence_:
         continue
       for i in range(len(self.gender_candidate_)):
         if self.gender_candidate_[i] in key:
+          gender_candidate[i] = True
           # 特殊处理 murano_glass滤镜 female和male效果最好
           if filter_name == "murano_glass":
-            if i < 4:
+            if i < len(self.gender_candidate_) / 2:
               result.append("female")
             else:
               result.append("male")
           else:
             result.append(key)
-      
-    return result
+    
+    many_person = False
+    # 多女或多男
+    if gender_candidate[0] or gender_candidate[2]:
+      many_person = True
+    # 两个人 一男一女
+    if gender_candidate[1] and gender_candidate[3]:
+      many_person = True
+    return result, many_person
 
   # 获取动物种类
   def get_animal(self)->list:

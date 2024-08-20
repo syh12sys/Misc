@@ -213,13 +213,13 @@ class SDWebUIService:
     # 性别处理
     if prompt_replacement_keys[0] in self.filter_conf_['prompt']:
       role_str = ''
-      role = self.tagger_interrogate_.get_gender(self.filter_conf_['name'])
+      role, many_person = self.tagger_interrogate_.get_gender(self.filter_conf_['name'])
       if len(role) == 0:
         # 如果没有人，就找动物，就走入兜底流程
         self.control_net_key_ = 'other'
         role = self.tagger_interrogate_.get_animal()
       if len(role) > 0:
-         role_str = role[0]
+         role_str = ','.join(role)
       elif self.tagger_interrogate_.is_animal:
         role_str = 'animal'
         
@@ -236,16 +236,28 @@ class SDWebUIService:
         if self.tagger_interrogate_.has_tag(iter):
           high_confidence_tags += ',' + iter
       # 肤色特别处理，如果是黑人，那么不能把它变白，这是个很敏感的种族问题
-      if self.tagger_interrogate_.is_black_person():
+      # 多人的时候没法处理，可能是一个白人和一个黑人
+      if not many_person and self.tagger_interrogate_.is_black_person():
         high_confidence_tags += ',(dark_skin:1.2)'
 
       prompt = self.filter_conf_['prompt']
       self.filter_conf_['prompt'] = prompt.replace(prompt_replacement_keys[1], high_confidence_tags)
 
+  def process_negative_prompt(self):
+    negative_prompts = self.filter_conf_['negative_prompt'].split(',')
+    # NSFW必须加上
+    for i in negative_prompts:
+      word = i.strip() 
+      if 'nsfw' == word or 'NSFW' == word:
+        break
+    else:
+      self.filter_conf_['negative_prompt'] = 'NSFW,' + ','.join(negative_prompts)
+
   def generate_image(self):
     self.control_net_key_ = 'controlnet'
     self.process_prompt()
     print('prompt=' + self.filter_conf_['prompt'])
+    self.process_negative_prompt()
     print('negative_prompt=' + self.filter_conf_['negative_prompt'])
     if self.filter_conf_['type'] == "img2img":
       return self.img2img()

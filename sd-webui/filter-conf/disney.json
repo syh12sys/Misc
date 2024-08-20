@@ -4,7 +4,7 @@
     "input_image": "E:/ai/2.jpg",
     "checkpoint": "disneyPixarCartoon_v10.safetensors",
     "vae": "kl-f8-anime2.ckpt",
-    "prompt": "masterpiece, best quality, {role} ascot blue_sky cloud day field flower flower_field ,outdoors, sky, solo,sunflower, {prompt}",
+    "prompt": "masterpiece, best quality, {role}, {prompt}",
     "negative_prompt": "EasyNegative, drawn by bad-artist, sketch by bad-artist-anime, (bad_prompt:0.8), (artist name, signature, watermark:1.4), (ugly:1.2), (worst quality, poor details:1.4), bad-hands-5, badhandv4, blurry",
     "sampler_name": "Euler a",
     "scheduler": "Automatic",
