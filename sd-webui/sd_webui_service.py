@@ -78,22 +78,31 @@ class SDWebUIService:
         dest_crop_value = (self.filter_conf_["width"], self.filter_conf_["height"])
     else:
       # 智能选择缩放尺寸
-      candidate_crop_scales = {}
-      if image.width > image.height:
+      # 正方形图片按照长宽选择，例如一个580*580的图片，如果按照长宽比例选择，那么就会选择到1024*1024
+      if image.width == image.height:
+        min_difference = float('inf')
         for i in range(1024, 511, -64):
-          candidate_crop_scales[1024 / i] = (1024, i)
+          if abs(image.width - i) < min_difference:
+            min_difference = abs(image.width - i)
+            dest_crop_value = (i, i)
       else:
-        for i in range(1024, 511, -64):
-          candidate_crop_scales[i / 1024] = (i, 1024)
-      # 获取最相近的缩放比例
-      origin_scale = image.width / image.height
-      min_difference = float('inf')
-
-      for key, value in candidate_crop_scales.items():
-        if abs(key - origin_scale) < min_difference:
-          min_difference = abs(key - origin_scale)
-          dest_crop_value = value
+        candidate_crop_scales = {}
+        if image.width > image.height:
+          for i in range(1024, 511, -64):
+            candidate_crop_scales[1024 / i] = (1024, i)
+        else:
+          for i in range(1024, 511, -64):
+            candidate_crop_scales[i / 1024] = (i, 1024)
+        print(candidate_crop_scales)
+        # 获取最相近的缩放比例
+        origin_scale = image.width / image.height
+        min_difference = float('inf')
+        for key, value in candidate_crop_scales.items():
+          if abs(key - origin_scale) < min_difference:
+            min_difference = abs(key - origin_scale)
+            dest_crop_value = value
       print('auto choose crop size=' + str(dest_crop_value))
+
     # 已经是最合适的尺寸，那么就不再裁剪
     if dest_crop_value == image.size:
       return image
@@ -231,7 +240,7 @@ class SDWebUIService:
       # 提取高置信率的tag放到prompt中
       high_confidence_tags = ','.join(self.tagger_interrogate_.get_high_confidence_tags())
       # 置信率及格但不高，但是影响比较大的词
-      optional_tags = ["looking_at_viewer"]
+      optional_tags = ["looking_at_viewer", 'cleavage']
       for iter in optional_tags:
         if self.tagger_interrogate_.has_tag(iter):
           high_confidence_tags += ',' + iter

@@ -11,6 +11,8 @@ class TaggerInterrogate:
     self.high_confidence_ = 0.85
     self.low_confidence_ = 0.5
     self.gender_candidate_ = ['girls', 'girl', 'boys', 'boy']
+    # prompt黑名单，这些词可能会导致输出NSFW图片或者低质量图片
+    self.black_list = ['breasts', 'freckles']
 
     file_path = os.path.join(util.get_py_file_dir(), 'filter-conf/animals.txt')
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -71,7 +73,7 @@ class TaggerInterrogate:
   def get_high_confidence_tags(self)->list:
     result = []
     for key, value in self.caption_.items():
-      if value < self.high_confidence_:
+      if value < self.high_confidence_ or key in self.black_list:
         continue
       # 剔除性别
       for i in range(len(self.gender_candidate_)):
